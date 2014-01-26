@@ -51,6 +51,22 @@ server {
     }
 }
 EOT
+cat <<'EOT' > /etc/nginx/conf.d/gzip.conf
+gzip on;
+gzip_min_length 1000;
+gzip_comp_level 5;
+gzip_proxied any;
+gzip_types text/css
+           text/javascript
+           text/xml
+           text/plain
+           application/javascript
+           application/x-javascript
+           application/json
+           application/xml
+           application/xhtml+xml
+           application/rss+xml;
+EOT
 service nginx start
 chkconfig nginx on
 
